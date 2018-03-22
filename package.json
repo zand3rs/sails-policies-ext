@@ -23,6 +23,7 @@
     "url": "https://github.com/zand3rs/sails-policies-ext/issues"
   },
   "dependencies": {
+    "lodash": "^4.17.5",
     "upath": "^1.0.4"
   },
   "devDependencies": {
