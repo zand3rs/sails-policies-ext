@@ -1,6 +1,6 @@
 {
   "name": "sails-policies-ext",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is a simple `Sails.js` policy extension that enables a policy middleware to accept an optional parameter.",
   "main": "index.js",
   "scripts": {
