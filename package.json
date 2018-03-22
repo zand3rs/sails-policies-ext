@@ -1,7 +1,7 @@
 {
   "name": "sails-policies-ext",
   "version": "0.0.1",
-  "description": "Sails policy extension.",
+  "description": "This is a simple `Sails.js` policy extension that enables a policy middleware to accept an optional parameter.",
   "main": "index.js",
   "scripts": {
     "test": "make MOCHA_OPTS='-C -R dot' test"
