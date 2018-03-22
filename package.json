@@ -1,0 +1,34 @@
+{
+  "name": "sails-policies-ext",
+  "version": "0.0.0",
+  "description": "Sails policy extension.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make MOCHA_OPTS='-C -R dot' test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zand3rs/sails-policies-ext.git"
+  },
+  "keywords": [
+    "sails",
+    "policy",
+    "policies",
+    "extension"
+  ],
+  "author": "Alexander Magtipon",
+  "license": "ISC",
+  "homepage": "https://github.com/zand3rs/sails-policies-ext",
+  "bugs": {
+    "url": "https://github.com/zand3rs/sails-policies-ext/issues"
+  },
+  "dependencies": {
+    "upath": "^1.0.4"
+  },
+  "devDependencies": {
+    "node-test-helper": "~1.0.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
