@@ -10,7 +10,7 @@ $ npm install sails-policies-ext
 
 ## Usage
 
-Require the module in `config/policies.js` then call the `load()` method. The `load()` method accepts an optional parameter `folder` for loading policies from a different directory. You can mix it up with the default policy definition.
+Require the module in `config/policies.js` then call the `load()` method to load policies from the default `api/policies` directory. The `load()` method accepts an optional parameter `folder` for loading policies from a different directory. You can mix it up with the default policy definition.
 
 ```javascript
 //-- config/policies.js
