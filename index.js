@@ -1,5 +1,5 @@
 /**
- * PolicyExt
+ * SailsPoliciesExt
  *
  */
 
@@ -10,53 +10,74 @@ const Policy = require("./lib/policy");
 
 //==============================================================================
 
-class PolicyExt {
+class Policies {
 
-  constructor() {
-    _.forEach(PolicyExt.policies, (policy) => {
-      Object.defineProperty(this, policy.name, {
-        value: policy.apply.bind(policy) 
+  constructor(folder) {
+    const middlewares = getMiddlewares(folder);
+
+    Object.defineProperties(this, {
+      folder: { value: folder },
+      middlewares: { value: middlewares }
+    });
+
+    _.forEach(middlewares, (middleware) => {
+      Object.defineProperty(this, middleware.name, {
+        value: middleware.apply.bind(middleware)
       });
     });
-  }
-
-  //----------------------------------------------------------------------------
-
-  static get defaultFolder() {
-    return "api/policies";
-  }
-
-  //----------------------------------------------------------------------------
-
-  static get policies() {
-    return this._getPolicies();
-  }
-
-  //----------------------------------------------------------------------------
-
-  static _getPolicies() {
-    if (!this._policies) {
-      const dir = path.resolve(this.defaultFolder);
-      const files = fs.readdirSync(dir);
-      const policies = [];
-
-      _.forEach(files, (fname) => {
-        const fpath = path.join(dir, fname);
-        if (/^[^.].*\.js$/.test(fname) && fs.statSync(fpath).isFile()) {
-          policies.push(new Policy(fpath));
-        }
-      });
-      this._policies = policies;
-    }
-
-    return this._policies;
   }
 
 }
 
 //==============================================================================
+
+class SailsPoliciesExt {
+
+  static get Policies() {
+    return Policies;
+  }
+
+  //----------------------------------------------------------------------------
+
+  static load(folder = "api/policies") {
+    return new this.Policies(folder);
+  }
+
+}
+
+//==============================================================================
+//-- helper
+
+function getMiddlewares(folder) {
+  const policies = [];
+
+  if (!_.isString(folder)) {
+    return policies;
+  }
+
+  const dir = path.resolve(folder);
+  try {
+    if (!fs.statSync(dir).isDirectory()) {
+      return policies;
+    }
+  } catch (e) {
+    return policies;
+  }
+
+  const files = fs.readdirSync(dir);
+  _.forEach(files, (fname) => {
+    const fpath = path.join(dir, fname);
+    if (/^[^.].*\.js$/.test(fname) && fs.statSync(fpath).isFile()) {
+      policies.push(new Policy(fpath));
+    }
+  });
+
+  return policies;
+}
+
+//==============================================================================
 //-- export
 
-module.exports = new PolicyExt();
+module.exports = SailsPoliciesExt;
 
 //==============================================================================
