@@ -12,7 +12,7 @@ const Policy = require("./lib/policy");
 
 class Policies {
 
-  constructor(folder) {
+  constructor(folder = "") {
     const middlewares = getMiddlewares(folder);
 
     Object.defineProperties(this, {
@@ -51,7 +51,7 @@ class SailsPoliciesExt {
 function getMiddlewares(folder) {
   const policies = [];
 
-  if (!_.isString(folder)) {
+  if (!_.isString(folder) || _.isEmpty(folder)) {
     return policies;
   }
 
