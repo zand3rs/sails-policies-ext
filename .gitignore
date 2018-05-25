@@ -30,3 +30,4 @@ node_modules
 # Others
 tmp
 *.swp
+.DS_Store
